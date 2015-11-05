@@ -17,7 +17,6 @@
 #include "contrib/libatscc/libatscc2erl/staloadall.hats"
 staload "contrib/libatscc/libatscc2erl/Session/SATS/basis.sats"
 staload UN = "prelude/SATS/unsafe.sats"
-//staload "contrib/libatscc/libatscc2erl/Session/SATS/co-sslist.sats"
 
 
 symintr send 
@@ -30,7 +29,7 @@ overload recv with chanpos_recv
 overload recv with channeg_send
 
 abstype rpt (a:vt@ype)
-extern fun unroll_pos {a:vt@ype} (!chanpos (rpt a) >> chanpos (chsnd a :: rpt a)): void //= "%mac#"
+extern fun unroll_pos {a:vt@ype} (!chanpos (rpt a) >> chanpos (chsnd a :: rpt a)): void
 extern fun unroll_neg {a:vt@ype} (!channeg (rpt a) >> channeg (chsnd a :: rpt a)): void 
 overload unroll with unroll_pos 
 overload unroll with unroll_neg
@@ -50,7 +49,6 @@ extern fun counter (n: int): channeg (rpt int)
 extern fun filter (channeg (rpt int), p: int): channeg (rpt int)
 extern fun primes (): channeg (rpt int)
 extern fun sieve (): void 
-
 
 implement counter (n) = let 
 

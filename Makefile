@@ -2,7 +2,7 @@
 
 PATSCC=patscc -ccats --tlcalopt-disable -IIATS ${PATSHOMERELOC}
 
-all: simplesession.beam depsession.beam
+all: simplesession.beam session.beam untyped.beam
 
 clean:
 	rm *_dats.c
@@ -16,10 +16,16 @@ simplesession.erl: simplesession.dats
 simplesession.beam: simplesession.erl 
 	erlc simplesession.erl 
 
-depsession.erl: depsession.dats 
-	# patscc -tcats -IIATS ${PATSHOMERELOC} depsession.dats
-	$(PATSCC) depsession.dats 
-	atscc2erl -i depsession_dats.c > depsession.erl 
+session.erl: session.dats 
+	$(PATSCC) session.dats 
+	atscc2erl -i session_dats.c > session.erl 
 
-depsession.beam: depsession.erl
-	erlc depsession.erl 
+session.beam: session.erl
+	erlc session.erl 
+
+untyped.erl: untyped.dats 
+	$(PATSCC) untyped.dats
+	atscc2erl -i untyped_dats.c > untyped.erl 
+
+untyped.beam: untyped.erl 
+	erlc -pz CML/CATS untyped.erl 

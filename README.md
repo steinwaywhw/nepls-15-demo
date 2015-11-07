@@ -16,7 +16,7 @@ All the codes implement the classic Sieve of Eratosthenes using channels. A `cou
 
 1. `untyped.dats` contains an untyped implementation of sessions, or basically a naive π-calculus. It is actually a simple implementation of [CML](http://cml.cs.uchicago.edu). There isn't any guarantee and you can easily deadlock if not careful.
 2. `simplesession.dats` contains a session typed version. The type of channels strictly enforces the correct usage of a channel. Send/receive has to be in correct order and match each other. But this one is simply generating prime numbers forever and not terminating.
-3. `session.dats` is an even stronger version which supports a choice between continuing prime number or closing a session at each iteration. Therefore, you can elegantly close all channels in the end and it is guaranteed not to leak any process in Erlang.
+3. `session.dats` is an even stronger version which offers a choice between continuing prime number generation or closing a session at each iteration. Therefore, you can elegantly close all channels in the end and it is guaranteed not to leak any process in Erlang.
 
 ## Runtime Requirement
 

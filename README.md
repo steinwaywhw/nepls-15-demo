@@ -12,7 +12,7 @@ In this talk, we are to show that session types can be readily implemented in AT
 
 All the codes implement the classic Sieve of Eratosthenes using channels. A `counter` constantly send natural numbers to a channel, a `filter` read in numbers from one channel and send out filtered numbers to an output channel. And through careful computation, `primes` gather all prime numbers and output them to yet another channel to end users.
 
-![Sequence Graph](./demo.png)
+<p align="center"><img src="demo.png" width="360px"></p>
 
 1. `untyped.dats` contains an untyped implementation of sessions, or basically a naive π-calculus. It is actually a simple implementation of [CML](http://cml.cs.uchicago.edu). There isn't any guarantee and you can easily deadlock if not careful.
 2. `simplesession.dats` contains a session typed version. The type of channels strictly enforces the correct usage of a channel. Send/receive has to be in correct order and match each other. But this one is simply generating prime numbers forever and not terminating.

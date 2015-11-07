@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Session Types in ATS Demo for NEPLS&#39;15 by steinwaywhw</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Session Types in ATS Demo for NEPLS&#39;15</h1>
+        <p>Demo Programs</p>
+
+        <p class="view"><a href="https://github.com/steinwaywhw/nepls-15-demo">View the Project on GitHub <small>steinwaywhw/nepls-15-demo</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/steinwaywhw/nepls-15-demo/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/steinwaywhw/nepls-15-demo/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/steinwaywhw/nepls-15-demo">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="demo-programs-for-nepls15" class="anchor" href="#demo-programs-for-nepls15" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo Programs for NEPLS'15</h1>
+
+<p>This repo contains demos for my talk <strong>Session Types in ATS</strong> for <a href="http://www.nepls.org/Events/28/">NEPLS'15</a>. </p>
+
+<h2>
+<a id="abstract" class="anchor" href="#abstract" aria-hidden="true"><span class="octicon octicon-link"></span></a>Abstract</h2>
+
+<p>Session types offer a type-based discipline for enforcing that communication protocols be correctly followed in distributed programming. In essence, a session type can be assigned to a channel that encodes the protocol in use for communication on the channel and any code that uses the channel must follow the protocol precisely for otherwise the code cannot pass type checking.</p>
+
+<p>In this talk, we are to show that session types can be readily implemented in ATS, a statically typed programming language equipped with dependent types (of DML-style) and linear types. One particular implementation of session types in ATS translates (session-typed) ATS programs into Erlang code, benefiting directly from Erlang's extensive support for distributed programming. Interesting examples will be given to demonstrate certain usage and benefits of session types.</p>
+
+<h2>
+<a id="code" class="anchor" href="#code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code</h2>
+
+<p>All the codes implement the classic Sieve of Eratosthenes using channels. A <code>counter</code> constantly send natural numbers to a channel, a <code>filter</code> read in numbers from one channel and send out filtered numbers to an output channel. And through careful computation, <code>primes</code> gather all prime numbers and output them to yet another channel to end users.</p>
+
+<p align="center"><img src="demo.png" width="360px"></p>
+
+<ol>
+<li>
+<code>untyped.dats</code> contains an untyped implementation of sessions, or basically a naive π-calculus. It is actually a simple implementation of <a href="http://cml.cs.uchicago.edu">CML</a>. There isn't any guarantee and you can easily deadlock if not careful.</li>
+<li>
+<code>simplesession.dats</code> contains a session typed version. The type of channels strictly enforces the correct usage of a channel. Send/receive has to be in correct order and match each other. But this one is simply generating prime numbers forever and not terminating.</li>
+<li>
+<code>session.dats</code> is an even stronger version which offers a choice between continuing prime number generation or closing a session at each iteration. Therefore, you can elegantly close all channels in the end and it is guaranteed not to leak any process in Erlang.</li>
+</ol>
+
+<h2>
+<a id="runtime-requirement" class="anchor" href="#runtime-requirement" aria-hidden="true"><span class="octicon octicon-link"></span></a>Runtime Requirement</h2>
+
+<p>You need to install <a href="www.ats-lang.org">ATS</a>, <a href="http://erlang.org">Erlang</a> and <a href="http://elixir-lang.org">Elixir</a> in order to run this.</p>
+
+<p>Instructions for installing ATS can be found <a href="http://www.ats-lang.org/Downloads.html">here</a> and note that <code>ats-contrib</code> is required. </p>
+
+<h2>
+<a id="related-links" class="anchor" href="#related-links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Related Links</h2>
+
+<ol>
+<li>ATS official site: <a href="http://ats-lang.org">http://ats-lang.org</a>
+</li>
+<li>ATS repo on Github: <a href="http://github.com/githwxi/ATS-Postiats">http://github.com/githwxi/ATS-Postiats</a>
+</li>
+<li>ATS Contrib repo on Github: <a href="http://github.com/githwxi/ATS-Postiats-contrib">http://github.com/githwxi/ATS-Postiats-contrib</a>
+</li>
+<li>ATS User Group: <a href="https://groups.google.com/forum/#!forum/ats-lang-users">https://groups.google.com/forum/#!forum/ats-lang-users</a>
+</li>
+<li>Author of ATS: Hongwei Xi <a href="http://www.cs.bu.edu/%7Ehwxi/">http://www.cs.bu.edu/~hwxi/</a>
+</li>
+</ol>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/steinwaywhw">steinwaywhw</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

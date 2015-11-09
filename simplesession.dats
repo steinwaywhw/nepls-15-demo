@@ -69,6 +69,9 @@ implement filter (ch, p) = let
 		val _ = unroll chin 
 		val num = recv chin 
 		val _ = if num mod p > 0 then (unroll chout; send (chout, num))
+//		val _ = unroll chout
+//		val num = recv chout 
+//		val _ = if num mod p > 0 then (unroll chin; send (chin, num))
 	in 
 		loop (chout, chin, p)
 	end 

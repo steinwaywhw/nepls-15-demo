@@ -8,6 +8,7 @@ clean:
 	rm *_dats.c
 	rm *.erl 
 	rm *.beam
+	cd CML && make clean
 
 simplesession.erl: simplesession.dats
 	$(PATSCC) simplesession.dats
@@ -23,9 +24,16 @@ session.erl: session.dats
 session.beam: session.erl
 	erlc session.erl 
 
-untyped.erl: untyped.dats 
+Elixir.Channel.beam: CML/CATS/CML.ex
+	cd CML && make
+
+untyped.erl: untyped.dats Elixir.Channel.beam
 	$(PATSCC) untyped.dats
 	atscc2erl -i untyped_dats.c > untyped.erl 
 
 untyped.beam: untyped.erl 
 	erlc -pz CML/CATS untyped.erl 
+
+
+testuntyped:
+	erl -pz CML/CATS 

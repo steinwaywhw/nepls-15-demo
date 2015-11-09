@@ -1,11 +1,11 @@
 
+all:
+	cd CATS && elixirc CML.ex 
 
 clean:
 	cd CATS && rm -f *.beam
 	cd TEST && rm -f *.beam *.erl
 
-CML:
-	cd CATS && elixirc CML.ex 
 
 # all:
 # 	cd CATS && rm -f *.beam

@@ -37,6 +37,7 @@ overload recv with channeg_send
 overload wait with chanpos_nil_wait
 overload close with channeg_nil_close
 
+
 datatype negsslist (a:vt@ype, type) = 
 | nss_nil (a, chnil) of ()
 | nss_cons (a, chsnd a :: sslist a) of ()
@@ -208,19 +209,25 @@ in
 	channeg_create (llam (chout) => loop (chout, counter 2))
 end
 
-extern fun show (n: int, ch: !channeg(sslist(int))): void 
-implement show (n, ch) = () where {
-	val _ = sslist_cons ch 
-	val num = recv ch 
-	val _ = println! num 
-	val _ = $extfcall (void, "io:get_line", "")
-	val _ = if n > 0 then show (n-1, ch)
-}
+extern fun show (n: int, ch: !channeg(sslist(int)) >> channeg(chnil)): void 
+implement show (n, ch) = let 
+	fun loop (n: int, ch: !channeg(sslist(int))): void = () where {
+		val _ = sslist_cons ch 
+		val num = recv ch 
+		val _ = println! num 
+		val _ = println! num
+		val _ = $extfcall (void, "io:get_line", "")
+		val _ = if n > 0 then loop (n-1, ch)
+	}
+in 
+	loop (n, ch); sslist_nil ch 
+end 
 
 extern fun main0_erl (): void = "mac#"
 implement main0_erl () = () where {
 	val ch = primes ()
 	val _ = show (10, ch)
 	val _ = close ch 
+//	val x = channeg_send ch 
 }	
 

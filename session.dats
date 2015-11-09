@@ -215,7 +215,6 @@ implement show (n, ch) = let
 		val _ = sslist_cons ch 
 		val num = recv ch 
 		val _ = println! num 
-		val _ = println! num
 		val _ = $extfcall (void, "io:get_line", "")
 		val _ = if n > 0 then loop (n-1, ch)
 	}
@@ -226,8 +225,8 @@ end
 extern fun main0_erl (): void = "mac#"
 implement main0_erl () = () where {
 	val ch = primes ()
-	val _ = show (10, ch)
+	val _ = show (9, ch)
 	val _ = close ch 
-//	val x = channeg_send ch 
+//	val x = wait ch 
 }	
 

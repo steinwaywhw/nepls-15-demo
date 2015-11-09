@@ -31,5 +31,6 @@ Instructions for installing ATS can be found [here](http://www.ats-lang.org/Down
 1. ATS official site: http://ats-lang.org
 2. ATS repo on Github: http://github.com/githwxi/ATS-Postiats
 3. ATS Contrib repo on Github: http://github.com/githwxi/ATS-Postiats-contrib
-4. ATS User Group: https://groups.google.com/forum/#!forum/ats-lang-users
-5. Author of ATS: Hongwei Xi http://www.cs.bu.edu/~hwxi/
+4. ATS Session Type Implementation: https://github.com/githwxi/ATS-Postiats-contrib/tree/master/contrib/libatscc/libatscc2erl/Session
+5. ATS User Group: https://groups.google.com/forum/#!forum/ats-lang-users
+6. Author of ATS: Hongwei Xi http://www.cs.bu.edu/~hwxi/

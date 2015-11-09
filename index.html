@@ -31,25 +31,27 @@
         <h1>
 <a id="demo-programs-for-nepls15" class="anchor" href="#demo-programs-for-nepls15" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo Programs for NEPLS'15</h1>
 
-<p>This repo contains demos for my talk <strong>Session Types in ATS</strong> for <a href="http://www.nepls.org/Events/28/">NEPLS'15</a>. </p>
+<p>This repo contains demos for my talk <strong>Session Types in ATS</strong> for <a href="http://www.nepls.org/Events/28/">NEPLS'15</a>. Slides can be found <a href="https://github.com/steinwaywhw/nepls-15-demo/raw/slides.pdf">here</a>.</p>
 
 <h2>
 <a id="abstract" class="anchor" href="#abstract" aria-hidden="true"><span class="octicon octicon-link"></span></a>Abstract</h2>
 
 <p>Session types offer a type-based discipline for enforcing that communication protocols be correctly followed in distributed programming. In essence, a session type can be assigned to a channel that encodes the protocol in use for communication on the channel and any code that uses the channel must follow the protocol precisely for otherwise the code cannot pass type checking.</p>
 
+<p>Session type originates from <a href="http://link.springer.com/chapter/10.1007%2FBFb0053567">Honda, Vasconcelos and Kubo back in 1998</a>, and has since then been further extended and developed by a lot researchers around the world, including but not limited to Caires, Gay, Pfenning, Wadler, Yoshida, etc.</p>
+
 <p>In this talk, we are to show that session types can be readily implemented in ATS, a statically typed programming language equipped with dependent types (of DML-style) and linear types. One particular implementation of session types in ATS translates (session-typed) ATS programs into Erlang code, benefiting directly from Erlang's extensive support for distributed programming. Interesting examples will be given to demonstrate certain usage and benefits of session types.</p>
 
 <h2>
 <a id="code" class="anchor" href="#code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code</h2>
 
-<p>All the codes implement the classic Sieve of Eratosthenes using channels. A <code>counter</code> constantly send natural numbers to a channel, a <code>filter</code> read in numbers from one channel and send out filtered numbers to an output channel. And through careful computation, <code>primes</code> gather all prime numbers and output them to yet another channel to end users.</p>
+<p>All the codes implement the classic Sieve of Eratosthenes using channels. A <code>counter</code> constantly send natural numbers to a channel, a <code>filter</code> read in numbers from an input channel and send out filtered numbers to an output channel. And through careful computation, <code>primes</code> gather all prime numbers and output them to yet another channel to end users.</p>
 
-<p align="center"><img src="https://github.com/steinwaywhw/nepls-15-demo/raw/master/demo.png" width="360px"></p>
+<p align="center"><img src="demo.png" width="360px"></p>
 
 <ol>
 <li>
-<code>untyped.dats</code> contains an untyped implementation of sessions, or basically a naive π-calculus. It is actually a simple implementation of <a href="http://cml.cs.uchicago.edu">CML</a>. There isn't any guarantee and you can easily deadlock if not careful.</li>
+<code>untyped.dats</code> contains an untyped implementation of sessions, or basically a naive π-calculus. It is actually a simple implementation of <a href="http://cml.cs.uchicago.edu">CML</a>. There is no restrictions on the usage of channels and you can easily deadlock if not careful.</li>
 <li>
 <code>simplesession.dats</code> contains a session typed version. The type of channels strictly enforces the correct usage of a channel. Send/receive has to be in correct order and match each other. But this one is simply generating prime numbers forever and not terminating.</li>
 <li>
@@ -72,6 +74,8 @@
 <li>ATS repo on Github: <a href="http://github.com/githwxi/ATS-Postiats">http://github.com/githwxi/ATS-Postiats</a>
 </li>
 <li>ATS Contrib repo on Github: <a href="http://github.com/githwxi/ATS-Postiats-contrib">http://github.com/githwxi/ATS-Postiats-contrib</a>
+</li>
+<li>ATS Session Type Implementation: <a href="https://github.com/githwxi/ATS-Postiats-contrib/tree/master/contrib/libatscc/libatscc2erl/Session">https://github.com/githwxi/ATS-Postiats-contrib/tree/master/contrib/libatscc/libatscc2erl/Session</a>
 </li>
 <li>ATS User Group: <a href="https://groups.google.com/forum/#!forum/ats-lang-users">https://groups.google.com/forum/#!forum/ats-lang-users</a>
 </li>

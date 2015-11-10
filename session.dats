@@ -226,7 +226,7 @@ extern fun main0_erl (): void = "mac#"
 implement main0_erl () = () where {
 	val ch = primes ()
 	val _ = show (9, ch)
-	val _ = close ch 
+//	val _ = close ch 
 //	val x = wait ch 
 }	
 

@@ -44,7 +44,7 @@ fun filter (p: int, inCh: chan(int)) : chan(int) = let
   	val outCh = $CML.channel()
   	fun loop(): void = let
     	val i = $CML.recv(inCh)
-//		val i = $CML.recv(outCh)
+		val i = $CML.recv(outCh)
   	in
     	if i % p != 0 then $CML.send(outCh, i); loop()
 //		if i % p != 0 then $CML.send(inCh, i); loop()

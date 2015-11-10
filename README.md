@@ -1,6 +1,6 @@
 # Demo Programs for NEPLS'15
 
-This repo contains demos for my talk **Session Types in ATS** for [NEPLS'15](http://www.nepls.org/Events/28/). Slides can be found [here](https://github.com/steinwaywhw/nepls-15-demo/raw/slides.pdf).
+This repo contains demos for my talk **Session Types in ATS** for [NEPLS'15](http://www.nepls.org/Events/28/). Slides can be found [here](https://github.com/steinwaywhw/nepls-15-demo/raw/slides.pdf). This work is done by [Hongwei Xi](http://www.cs.bu.edu/~hwxi/).
 
 ## Abstract 
 
